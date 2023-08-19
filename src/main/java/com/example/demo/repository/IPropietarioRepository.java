@@ -8,7 +8,8 @@ public interface IPropietarioRepository {
 	
 	public void insertar(Propietario propietario);
 	public void actualizar(Propietario propietario);
-	public void eliminar(Propietario propietario);
+	public void eliminar(Integer id);
+	public Propietario buscar(Integer id);
 	public List<Propietario> buscarTodos();
 	
 

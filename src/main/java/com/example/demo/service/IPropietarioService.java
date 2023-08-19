@@ -8,7 +8,8 @@ import com.example.demo.repository.modelo.Propietario;
 public interface IPropietarioService  {
 	public void guardar(Propietario propietario);
 	public void actualizar(Propietario propietario);
-	public void eliminar(Propietario propietario);
+	public void eliminar(Integer id);
+	public Propietario buscar(Integer id);
 	public List<Propietario> reporteTodos();
 	
 

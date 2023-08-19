@@ -13,40 +13,48 @@ import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import jakarta.transaction.Transactional.TxType;
 @Repository
-@Transactional
+@Transactional(value = TxType.REQUIRED)
 public class PropietarioRepositoryImpl implements IPropietarioRepository{
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
 	@Override
-	
+	@Transactional(value = TxType.MANDATORY)
 	public void insertar(Propietario propietario) {
 		// TODO Auto-generated method stub
 		this.entityManager.persist(propietario);
 	}
 
 	@Override
-	
+	@Transactional(value = TxType.MANDATORY)
 	public void actualizar(Propietario propietario) {
 		// TODO Auto-generated method stub
 		this.entityManager.merge(propietario);
 	}
 
 	@Override
-	
-	public void eliminar(Propietario propietario) {
+	@Transactional(value = TxType.MANDATORY)
+	public void eliminar(Integer id) {
 		// TODO Auto-generated method stub
-		this.entityManager.remove(propietario);
+		this.entityManager.remove(id);
 	}
 
 	@Override
+	@Transactional(value = TxType.NOT_SUPPORTED)
 	public List<Propietario> buscarTodos() {
 		// TODO Auto-generated method stub
 		
 		TypedQuery<Propietario> myQuery=this.entityManager.createQuery("SELECT p FROM Propietario p",Propietario.class);
 		return myQuery.getResultList();
 		
+	}
+
+	@Override
+	@Transactional(value = TxType.NOT_SUPPORTED)
+	public Propietario buscar(Integer id) {
+		// TODO Auto-generated method stub
+		return this.entityManager.find(Propietario.class, id);
 	}
 
 

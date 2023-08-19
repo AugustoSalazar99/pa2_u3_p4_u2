@@ -17,32 +17,41 @@ public class PropietarioServiceImpl implements IPropietarioService{
 	
 	@Autowired
 	private IPropietarioRepository propietarioRepository;
+	
+	
 	@Override
-//	@Transactional(value = TxType.MANDATORY)
+	@Transactional(value = TxType.REQUIRED)
 	public void guardar(Propietario propietario) {
 		// TODO Auto-generated method stub
 		this.propietarioRepository.insertar(propietario);
 	}
 
 	@Override
-//	@Transactional(value = TxType.MANDATORY)
+	@Transactional(value = TxType.MANDATORY)
 	public void actualizar(Propietario propietario) {
 		// TODO Auto-generated method stub
 		this.propietarioRepository.actualizar(propietario);
 	}
 
 	@Override
-	//@Transactional(value = TxType.MANDATORY)
-	public void eliminar(Propietario propietario) {
+	@Transactional(value = TxType.MANDATORY)
+	public void eliminar(Integer id) {
 		// TODO Auto-generated method stub
-		this.propietarioRepository.eliminar(propietario);
+		this.propietarioRepository.eliminar(id);
 	}
 
 	@Override
-	//@Transactional(value = TxType.NOT_SUPPORTED)
+	@Transactional(value = TxType.NOT_SUPPORTED)
 	public List<Propietario> reporteTodos() {
 		// TODO Auto-generated method stub
 		return this.propietarioRepository.buscarTodos();
+	}
+
+	@Override
+	@Transactional(value = TxType.NOT_SUPPORTED)
+	public Propietario buscar(Integer id) {
+		// TODO Auto-generated method stub
+		return this.propietarioRepository.buscar(id);
 	}
 	
 
