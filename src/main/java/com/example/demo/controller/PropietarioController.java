@@ -7,29 +7,31 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.repository.modelo.Propietario;
 import com.example.demo.service.IPropietarioService;
 
 @Controller
-@RequestMapping("/propietarios")//nombre debe estar en plural
+@RequestMapping("/propietarios") // nombre debe estar en plural
 public class PropietarioController {
-	
+
 	@Autowired
 	private IPropietarioService propietarioService;
 
-	
-	//todos los metodos del controoler va a direccionaar a la vista 
-	//http://localhost:8081/concesionar/propietarios/buscar
-	
+	// todos los metodos del controoler va a direccionaar a la vista
+	// http://localhost:8081/concesionar/propietarios/buscar
+
 	@GetMapping("/buscar")
 	public String buscarTodos(Model modelo) {
-		List<Propietario> lista=this.propietarioService.reporteTodos();
-		modelo.addAttribute("propietarios",lista);
+		List<Propietario> lista = this.propietarioService.reporteTodos();
+		modelo.addAttribute("propietarios", lista);
 		return "vistaListaPropietario";
-		
+
 	}
+
+	// http://localhost:8081/concesionario/propietarios/buscarPorID/datoquetengo
 
 	@GetMapping("/buscarPorID/{idPropietario}")//hay que decirle que es un dato pathvariable
 	public String buscarPorId(@PathVariable("idPropietario") Integer id, Model model) {
@@ -41,6 +43,14 @@ public class PropietarioController {
 		
 		
 		return "vistaPropietario";
+	}
+	
+//http://localhost:8081/concesionario/propietarios/actualizar/7
+	// necesito recibir un objeto para este metodo entonces id y objeto
+	@PutMapping("/actualizar/{idPropietario}")
+	public String actualizarPropietario(@PathVariable("idPropietario") Integer id,Propietario propietario) {
+		this.propietarioService.actualizar(propietario);
+		return "redirect:/propietarios/buscar";
 		
 	}
 	
