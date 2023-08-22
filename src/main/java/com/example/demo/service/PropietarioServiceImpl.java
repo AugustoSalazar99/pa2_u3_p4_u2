@@ -27,14 +27,14 @@ public class PropietarioServiceImpl implements IPropietarioService{
 	}
 
 	@Override
-	@Transactional(value = TxType.MANDATORY)
+	@Transactional(value = TxType.REQUIRED)
 	public void actualizar(Propietario propietario) {
 		// TODO Auto-generated method stub
 		this.propietarioRepository.actualizar(propietario);
 	}
 
 	@Override
-	@Transactional(value = TxType.MANDATORY)
+	@Transactional(value = TxType.REQUIRED)
 	public void eliminar(Integer id) {
 		// TODO Auto-generated method stub
 		this.propietarioRepository.eliminar(id);

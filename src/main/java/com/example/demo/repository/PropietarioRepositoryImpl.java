@@ -20,21 +20,21 @@ public class PropietarioRepositoryImpl implements IPropietarioRepository{
 	private EntityManager entityManager;
 
 	@Override
-	@Transactional(value = TxType.MANDATORY)
+	@Transactional(value = TxType.REQUIRED)
 	public void insertar(Propietario propietario) {
 		// TODO Auto-generated method stub
 		this.entityManager.persist(propietario);
 	}
 
 	@Override
-	@Transactional(value = TxType.MANDATORY)
+	@Transactional(value = TxType.REQUIRED)
 	public void actualizar(Propietario propietario) {
 		// TODO Auto-generated method stub
 		this.entityManager.merge(propietario);
 	}
 
 	@Override
-	@Transactional(value = TxType.MANDATORY)
+	@Transactional(value = TxType.REQUIRED)
 	public void eliminar(Integer id) {
 		// TODO Auto-generated method stub
 		this.entityManager.remove(id);
